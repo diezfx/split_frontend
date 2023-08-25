@@ -6,6 +6,9 @@ on:
 jobs:
   publish:
     name: build
+    permissions:
+        pages: write      # to deploy to Pages
+        id-token: write   # to verify the deployment originates from an appropriate source
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
