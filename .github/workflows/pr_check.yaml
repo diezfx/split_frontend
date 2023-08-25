@@ -2,7 +2,7 @@ name: PR Check
 on:
   pull_request:
 jobs:
-  golangci:
+  lint:
     name: lint
     runs-on: ubuntu-latest
     steps:
@@ -22,3 +22,20 @@ jobs:
 
       - name: Analyze project source
         run: dart analyze --fatal-infos
+
+  build:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'beta'
+      - run: flutter --version
+      - name: Install dependencies
+        run: dart pub get
+      - name: Build
+        run: flutter build web
