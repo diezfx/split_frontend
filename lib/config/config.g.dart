@@ -8,8 +8,22 @@ part of 'config.dart';
 
 EnvConfig _$EnvConfigFromJson(Map<String, dynamic> json) => EnvConfig(
       json['splitrBackendUrl'] as String,
+      SupaBaseConfig.fromJson(json['supabase'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$EnvConfigToJson(EnvConfig instance) => <String, dynamic>{
       'splitrBackendUrl': instance.splitrBackendUrl,
+      'supabase': instance.supabase,
+    };
+
+SupaBaseConfig _$SupaBaseConfigFromJson(Map<String, dynamic> json) =>
+    SupaBaseConfig(
+      json['url'] as String,
+      json['anonKey'] as String,
+    );
+
+Map<String, dynamic> _$SupaBaseConfigToJson(SupaBaseConfig instance) =>
+    <String, dynamic>{
+      'url': instance.url,
+      'anonKey': instance.anonKey,
     };

@@ -29,13 +29,12 @@ Future main() async {
     print('${record.level.name}: ${record.time}: ${record.message}');
   });
 
-  await Supabase.initialize(
-    url: 'https://vkwgpkltvvmojhjeudrd.supabase.co',
-    anonKey:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrd2dwa2x0dnZtb2poamV1ZHJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODQ3MDg0MjUsImV4cCI6MjAwMDI4NDQyNX0.mBAFstmiRQ1wM4R3qFRtilN6XsMGkpgcMPyhWO7ER0A',
-  );
-
   var envConfig = await EnvConfig.loadConfig();
+
+  await Supabase.initialize(
+    url: envConfig.supabase.url,
+    anonKey: envConfig.supabase.anonKey,
+  );
 
   if (kIsWeb) {
     usePathUrlStrategy();

@@ -1,4 +1,8 @@
 run: 
-	flutter run -d macos --dart-define-from-file=env/dev.json
+	flutter run -d macos
 browser: 
-	flutter run -d chrome --web-port=3000 --dart-define-from-file=env/dev.json
+	flutter run -d chrome --web-port=3000
+
+
+generate:
+	dart run build_runner build

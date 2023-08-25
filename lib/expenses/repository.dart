@@ -26,8 +26,9 @@ class ExpenseRepository implements IExpenseRepository {
 
   @override
   Future<List<CostProject>> getCostProjectsByUser(UserId user) async {
-    var path = Uri.http(config.baseUrl, 'api/v1.0/projects',
-        GetProjectsQueryParams(user).toQuery());
+    log.info("the path ${config.baseUrl}");
+    var path = Uri.parse('${config.baseUrl}/api/v1.0/projects')
+        .replace(queryParameters: GetProjectsQueryParams(user).toQuery());
 
     var response = await http.get(path);
     List<dynamic> decodedResponse = jsonDecode(response.body);
@@ -40,7 +41,7 @@ class ExpenseRepository implements IExpenseRepository {
   @override
   Future<CostProject?> getCostProjectById(String id) async {
     log.info("get Project $id");
-    var path = Uri.http(config.baseUrl, 'api/v1.0/projects/$id');
+    var path = Uri.parse('${config.baseUrl}/api/v1.0/projects/$id');
 
     var response = await http.get(path);
     var decodedResponse = jsonDecode(response.body);
@@ -51,8 +52,8 @@ class ExpenseRepository implements IExpenseRepository {
 
   @override
   Future addCostToProject(String projectId, Transaction element) async {
-    var path =
-        Uri.http(config.baseUrl, 'api/v1.0/projects/$projectId/transactions');
+    var path = Uri.parse(
+        '${config.baseUrl}/api/v1.0/projects/$projectId/transactions');
 
     final response = await http.post(path, body: jsonEncode(element));
 
@@ -61,7 +62,7 @@ class ExpenseRepository implements IExpenseRepository {
 
   @override
   Future<CostProject> addnewProject(CostProject project) async {
-    var path = Uri.https(config.baseUrl, 'api/v1.0/projects');
+    var path = Uri.parse('${config.baseUrl}/api/v1.0/projects');
 
     final response = await http.post(path, body: jsonEncode(project));
 
