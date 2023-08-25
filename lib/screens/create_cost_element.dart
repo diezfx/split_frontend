@@ -30,6 +30,12 @@ class _CreateCostElementScreenState extends State<CreateCostElementScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () => context.pop(),
+          ),
+          title: const Text("Create Cost")),
       body: Form(
           key: _formKey,
           child: Column(children: [

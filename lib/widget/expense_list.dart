@@ -18,12 +18,17 @@ class ExpenseList extends StatelessWidget {
           children: const [Text("Loading")],
         );
       }
-      return ListView(
-        physics: const ScrollPhysics(),
-        children: [
-          for (final element in costElements)
-            CostElementCompact(projectId, element),
-        ],
+      return RefreshIndicator(
+        triggerMode: RefreshIndicatorTriggerMode.anywhere,
+        onRefresh: () {
+          return context.read<ProjectCubit>().fetchCostElements(projectId);
+        },
+        child: ListView(
+          children: [
+            for (final element in costElements)
+              CostElementCompact(projectId, element),
+          ],
+        ),
       );
     });
   }

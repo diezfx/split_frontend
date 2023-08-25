@@ -19,7 +19,7 @@ class ProjectDetailsScreen extends StatelessWidget {
         body: ExpenseList(projectId!),
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
-          onPressed: () => context.go("/projects/$projectId/create-element"),
+          onPressed: () => context.push("/projects/$projectId/create-element"),
         ));
   }
 }

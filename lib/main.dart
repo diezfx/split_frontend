@@ -15,7 +15,8 @@ import 'package:split_frontend/screens/login.dart';
 import 'package:split_frontend/screens/project_list_screen.dart';
 import 'package:split_frontend/screens/project_details.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 import 'expenses/repository.dart';
 
@@ -36,7 +37,9 @@ Future main() async {
 
   var envConfig = await EnvConfig.loadConfig();
 
-  usePathUrlStrategy();
+  if (kIsWeb) {
+    usePathUrlStrategy();
+  }
 
   runApp(MyApp(envConfig));
 }
