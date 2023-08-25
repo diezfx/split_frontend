@@ -16,6 +16,7 @@ import 'package:split_frontend/screens/project_list_screen.dart';
 import 'package:split_frontend/screens/project_details.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+// ignore: depend_on_referenced_packages
 import 'package:flutter_web_plugins/url_strategy.dart';
 
 import 'expenses/repository.dart';
@@ -52,7 +53,8 @@ class MyApp extends StatelessWidget {
   final _router = GoRouter(
     initialLocation: supabase.auth.currentSession == null ? '/sign-in' : '/',
     routes: [
-      GoRoute(path: '/', builder: (context, state) => ProjectListScreen()),
+      GoRoute(
+          path: '/', builder: (context, state) => const ProjectListScreen()),
       GoRoute(
           path: '/sign-in', builder: (context, state) => const LoginScreen()),
       GoRoute(path: '/login-callback', redirect: (context, state) => "/"),

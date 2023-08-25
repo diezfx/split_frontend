@@ -15,13 +15,16 @@ class CreateProjectScreen extends StatefulWidget {
   const CreateProjectScreen(this.userId, {super.key});
 
   @override
-  _CreateProjectScreenState createState() => _CreateProjectScreenState(userId);
+  // ignore: no_logic_in_create_state
+  State<CreateProjectScreen> createState() => _CreateProjectScreenState();
 }
 
 class _CreateProjectScreenState extends State<CreateProjectScreen> {
-  final String userId;
+  late String userId;
 
-  _CreateProjectScreenState(this.userId);
+  _CreateProjectScreenState() {
+    userId = widget.userId;
+  }
 
   final _formKey = GlobalKey<FormState>();
   final _nameTextController = TextEditingController();

@@ -54,7 +54,7 @@ class ExpenseRepository implements IExpenseRepository {
     var path =
         Uri.http(config.baseUrl, 'api/v1.0/projects/$projectId/transactions');
 
-    final response = await http.post(path, body: jsonEncode(element));
+    final _ = await http.post(path, body: jsonEncode(element));
 
     return;
   }

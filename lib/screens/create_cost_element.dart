@@ -13,15 +13,18 @@ class CreateCostElementScreen extends StatefulWidget {
   const CreateCostElementScreen(this.userId, this.projectId, {super.key});
 
   @override
-  _CreateCostElementScreenState createState() =>
-      _CreateCostElementScreenState(userId, projectId);
+  State<CreateCostElementScreen> createState() =>
+      _CreateCostElementScreenState();
 }
 
 class _CreateCostElementScreenState extends State<CreateCostElementScreen> {
-  final String projectId;
-  final String userId;
+  late String projectId;
+  late String userId;
 
-  _CreateCostElementScreenState(this.userId, this.projectId);
+  _CreateCostElementScreenState() {
+    projectId = widget.projectId;
+    userId = widget.userId;
+  }
 
   final _formKey = GlobalKey<FormState>();
   final _nameTextController = TextEditingController();

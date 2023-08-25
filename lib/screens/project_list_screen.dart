@@ -5,14 +5,13 @@ import 'package:split_frontend/cubit/auth_cubit.dart';
 import 'package:split_frontend/widget/project_list.dart';
 
 class ProjectListScreen extends StatelessWidget {
-  late String userId;
-  ProjectListScreen({super.key});
+  const ProjectListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     var user = context.read<AuthCubit>().state as LoggedIn;
 
-    userId = user.session.user.id;
+    var userId = user.session.user.id;
 
     return Scaffold(
         appBar: AppBar(title: const Text("Projects")),
