@@ -7,8 +7,10 @@ jobs:
   publish:
     name: build
     permissions:
+        contents: read
         pages: write      # to deploy to Pages
         id-token: write   # to verify the deployment originates from an appropriate source
+        deployments: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -23,10 +25,7 @@ jobs:
         run: dart pub get
       - name: Build
         run: flutter build web --base-href "/split_frontend/" --dart-define=ENVIRONMENT=dev --web-renderer html
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: './build/web'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+
+      - run: git checkout -b docs
+      - run: git commit -m 'message' -- build/web
+      - run: git push
