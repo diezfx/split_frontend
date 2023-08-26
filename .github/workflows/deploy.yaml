@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: dart pub get
       - name: Build
-        run: flutter build web --base-href "/split_frontend/" --dart-define=ENVIRONMENT=dev
+        run: flutter build web --base-href "/split_frontend/" --dart-define=ENVIRONMENT=dev --web-renderer html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
