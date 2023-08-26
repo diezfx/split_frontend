@@ -45,36 +45,38 @@ Future main() async {
 
 class MyApp extends StatelessWidget {
   final EnvConfig envConfig;
-  MyApp(this.envConfig, {super.key});
-
-  // GoRouter configuration
-  final _router = GoRouter(
-    initialLocation: supabase.auth.currentSession == null ? '/sign-in' : '/',
-    routes: [
-      GoRoute(path: '/', builder: (context, state) => ProjectListScreen()),
-      GoRoute(
-          path: '/sign-in', builder: (context, state) => const LoginScreen()),
-      GoRoute(path: '/login-callback', redirect: (context, state) => "/"),
-      GoRoute(
-          path: '/create-project',
-          builder: (context, state) => const CreateProjectScreen("user1")),
-      GoRoute(
-          path: '/projects/:projectId',
-          builder: (context, state) =>
-              ProjectDetailsScreen(state.pathParameters["projectId"])),
-      GoRoute(
-          path: '/projects/:projectId/elements/:elementId',
-          builder: (context, state) => ExpensesDetailsScreen(
-              state.pathParameters["projectId"],
-              state.pathParameters["elementId"])),
-      GoRoute(
-          path: '/projects/:projectId/create-element',
-          builder: (context, state) => CreateCostElementScreen(
-                "user1",
-                state.pathParameters["projectId"]!,
-              )),
-    ],
-  );
+  late final GoRouter _router;
+  MyApp(this.envConfig, {super.key}) {
+    // GoRouter configuration
+    _router = GoRouter(
+      initialLocation: supabase.auth.currentSession == null ? '/sign-in' : '/',
+      routes: [
+        GoRoute(path: '/', builder: (context, state) => ProjectListScreen()),
+        GoRoute(
+            path: '/sign-in',
+            builder: (context, state) => LoginScreen(envConfig)),
+        GoRoute(path: '/login-callback', redirect: (context, state) => "/"),
+        GoRoute(
+            path: '/create-project',
+            builder: (context, state) => const CreateProjectScreen("user1")),
+        GoRoute(
+            path: '/projects/:projectId',
+            builder: (context, state) =>
+                ProjectDetailsScreen(state.pathParameters["projectId"])),
+        GoRoute(
+            path: '/projects/:projectId/elements/:elementId',
+            builder: (context, state) => ExpensesDetailsScreen(
+                state.pathParameters["projectId"],
+                state.pathParameters["elementId"])),
+        GoRoute(
+            path: '/projects/:projectId/create-element',
+            builder: (context, state) => CreateCostElementScreen(
+                  "user1",
+                  state.pathParameters["projectId"]!,
+                )),
+      ],
+    );
+  }
 
   // This widget is the root of your application.
   @override
