@@ -7,11 +7,13 @@ part of 'config.dart';
 // **************************************************************************
 
 EnvConfig _$EnvConfigFromJson(Map<String, dynamic> json) => EnvConfig(
+      json['baseUrl'] as String,
       json['splitrBackendUrl'] as String,
       SupaBaseConfig.fromJson(json['supabase'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$EnvConfigToJson(EnvConfig instance) => <String, dynamic>{
+      'baseUrl': instance.baseUrl,
       'splitrBackendUrl': instance.splitrBackendUrl,
       'supabase': instance.supabase,
     };

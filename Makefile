@@ -1,7 +1,7 @@
 run: 
-	flutter run -d macos
+	flutter run -d macos --dart-define=ENVIRONMENT=local
 browser: 
-	flutter run -d chrome --web-port=3000
+	flutter run -d chrome --web-port=3000 --dart-define=ENVIRONMENT=local
 lint:
 	dart analyze
 generate:

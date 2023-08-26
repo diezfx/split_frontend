@@ -25,7 +25,7 @@ class LoginScreen extends StatelessWidget {
 
   String buildRedirectUrl() {
     if (kIsWeb) {
-      return "${Uri.base}/login-callback";
+      return "${cfg.baseUrl}/login-callback";
     } else {
       return 'splitapp://login-callback/';
     }

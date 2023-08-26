@@ -1,5 +1,5 @@
 {
-    "baseUrl": "https://diezfx.github.io/split_frontend",
+    "baseUrl": "localhost:3000",
     "splitrBackendUrl": "http://splitapp.duckdns.org/split",
     "supabase": {
         "url": "https://vkwgpkltvvmojhjeudrd.supabase.co",

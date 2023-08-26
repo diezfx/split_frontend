@@ -7,14 +7,17 @@ part 'config.g.dart';
 
 @JsonSerializable()
 class EnvConfig {
+  String baseUrl;
   String splitrBackendUrl;
 
   SupaBaseConfig supabase;
 
-  EnvConfig(this.splitrBackendUrl, this.supabase);
+  EnvConfig(this.baseUrl, this.splitrBackendUrl, this.supabase);
 
   static Future<EnvConfig> loadConfig() async {
-    var configContent = await rootBundle.loadString('assets/config/dev.json');
+    const env = String.fromEnvironment("ENVIRONMENT", defaultValue: "local");
+
+    var configContent = await rootBundle.loadString('assets/config/$env.json');
 
     var configJson = jsonDecode(configContent);
 
