@@ -26,6 +26,10 @@ jobs:
       - name: Build
         run: flutter build web --base-href "/split_frontend/" --dart-define=ENVIRONMENT=dev --web-renderer html
 
-      - run: git checkout -b docs
-      - run: git commit -m 'message' -- build/web
-      - run: git push
+      - name: Commit report
+        run: |
+          git checkout -b docs
+          git config --global user.name 'Your Name'
+          git config --global user.email 'your-username@users.noreply.github.com'
+          git commit -am "Automated report"
+          git push
