@@ -7,22 +7,22 @@ part of 'expenses.dart';
 // **************************************************************************
 
 CostProject _$CostProjectFromJson(Map<String, dynamic> json) => CostProject(
-      json['ID'] as String,
-      json['Name'] as String,
-      $enumDecodeNullable(_$CurrencyEnumMap, json['Currency']),
-      (json['Transactions'] as List<dynamic>)
+      json['id'] as String,
+      json['name'] as String,
+      $enumDecodeNullable(_$CurrencyEnumMap, json['currency']),
+      (json['transactions'] as List<dynamic>)
           .map((e) => Transaction.fromJson(e as Map<String, dynamic>))
           .toList(),
-      (json['Members'] as List<dynamic>).map((e) => e as String).toList(),
+      (json['members'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$CostProjectToJson(CostProject instance) =>
     <String, dynamic>{
-      'ID': instance.id,
-      'Name': instance.name,
-      'Currency': _$CurrencyEnumMap[instance.currency],
-      'Transactions': instance.costElements,
-      'Members': instance.members,
+      'id': instance.id,
+      'name': instance.name,
+      'currency': _$CurrencyEnumMap[instance.currency],
+      'transactions': instance.costElements,
+      'members': instance.members,
     };
 
 const _$CurrencyEnumMap = {
@@ -31,12 +31,12 @@ const _$CurrencyEnumMap = {
 };
 
 Transaction _$TransactionFromJson(Map<String, dynamic> json) => Transaction(
-      json['ID'] as String,
-      json['Name'] as String,
-      $enumDecode(_$CostTypeEnumMap, json['TransactionType']),
-      (json['Amount'] as num).toDouble(),
-      json['SourceID'] as String,
-      (json['TargetIDs'] as List<dynamic>).map((e) => e as String).toList(),
+      json['id'] as String,
+      json['name'] as String,
+      $enumDecode(_$CostTypeEnumMap, json['transactionType']),
+      (json['amount'] as num).toDouble(),
+      json['sourceId'] as String,
+      (json['targetIds'] as List<dynamic>).map((e) => e as String).toList(),
       json['creationDate'] == null
           ? null
           : DateTime.parse(json['creationDate'] as String),
@@ -44,12 +44,12 @@ Transaction _$TransactionFromJson(Map<String, dynamic> json) => Transaction(
 
 Map<String, dynamic> _$TransactionToJson(Transaction instance) =>
     <String, dynamic>{
-      'ID': instance.id,
-      'Name': instance.name,
-      'TransactionType': _$CostTypeEnumMap[instance.transactionType]!,
-      'Amount': instance.amount,
-      'SourceID': instance.source,
-      'TargetIDs': instance.targets,
+      'id': instance.id,
+      'name': instance.name,
+      'transactionType': _$CostTypeEnumMap[instance.transactionType]!,
+      'amount': instance.amount,
+      'sourceId': instance.source,
+      'targetIds': instance.targets,
       'creationDate': instance.creationDate?.toIso8601String(),
     };
 

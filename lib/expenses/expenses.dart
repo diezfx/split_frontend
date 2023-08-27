@@ -10,16 +10,12 @@ const uuid = Uuid();
 
 @JsonSerializable()
 class CostProject extends Equatable {
-  @JsonKey(name: 'ID')
   final String id;
-  @JsonKey(name: 'Name')
   final String name;
-  @JsonKey(name: 'Currency')
   final Currency? currency;
 
-  @JsonKey(name: 'Transactions')
+  @JsonKey(name: 'transactions')
   final List<Transaction> costElements;
-  @JsonKey(name: 'Members')
   final List<String> members;
 
   const CostProject(
@@ -61,20 +57,15 @@ enum Currency {
 
 @JsonSerializable()
 class Transaction extends Equatable {
-  @JsonKey(name: 'ID')
   final String id;
-  @JsonKey(name: 'Name')
   final String name;
-  @JsonKey(name: 'TransactionType')
   final CostType transactionType;
 
-  @JsonKey(name: 'Amount')
   final double amount;
-  @JsonKey(name: 'SourceID')
+  @JsonKey(name: 'sourceId')
   final UserId source;
-  @JsonKey(name: 'TargetIDs')
+  @JsonKey(name: 'targetIds')
   final List<UserId> targets;
-  @JsonKey(name: 'creationDate')
   final DateTime? creationDate;
 
   const Transaction(this.id, this.name, this.transactionType, this.amount,
