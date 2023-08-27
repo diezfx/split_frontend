@@ -81,36 +81,36 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
-        darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
-        home: MultiRepositoryProvider(
-          providers: [
-            RepositoryProvider<IExpenseRepository>(
-                create: (context) =>
-                    ExpenseRepository(Config(envConfig.splitrBackendUrl)))
-          ],
-          child: MultiBlocProvider(
-            providers: [
-              BlocProvider(
-                create: (context) => AuthCubit(),
-              ),
-              BlocProvider(
-                create: (context) =>
-                    ProjectCubit(context.read<IExpenseRepository>()),
-              ),
-              BlocProvider(
-                create: (context) =>
-                    CostElementCubit(context.read<IExpenseRepository>()),
-              ),
-              BlocProvider(
-                create: (context) =>
-                    UserCubit(context.read<IExpenseRepository>()),
-              ),
-            ],
-            child: MaterialApp.router(routerConfig: _router),
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider<IExpenseRepository>(
+            create: (context) =>
+                ExpenseRepository(Config(envConfig.splitrBackendUrl)))
+      ],
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => AuthCubit(),
           ),
-        ));
+          BlocProvider(
+            create: (context) =>
+                ProjectCubit(context.read<IExpenseRepository>()),
+          ),
+          BlocProvider(
+            create: (context) =>
+                CostElementCubit(context.read<IExpenseRepository>()),
+          ),
+          BlocProvider(
+            create: (context) => UserCubit(context.read<IExpenseRepository>()),
+          ),
+        ],
+        child: MaterialApp.router(
+            title: 'Flutter Demo',
+            theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
+            darkTheme:
+                ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
+            routerConfig: _router),
+      ),
+    );
   }
 }
