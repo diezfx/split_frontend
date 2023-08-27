@@ -12,14 +12,17 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ElevatedButton(
-          onPressed: () {
-            client.auth.signInWithOAuth(
-              Provider.google,
-              redirectTo: buildRedirectUrl(),
-            );
-          },
-          child: const Text("Login")),
+      body: Container(
+        alignment: Alignment.center,
+        child: ElevatedButton(
+            onPressed: () {
+              client.auth.signInWithOAuth(
+                Provider.google,
+                redirectTo: buildRedirectUrl(),
+              );
+            },
+            child: const Text("Login")),
+      ),
     );
   }
 
