@@ -25,7 +25,7 @@ jobs:
         run: flutter build web --base-href "/split_frontend/" --dart-define=ENVIRONMENT=dev
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: './build/web'
       - name: Deploy to GitHub Pages
